@@ -1,34 +1,23 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import HoverEffect from "./HoverEffect";
 
-const Recommends = (props) => {
+const Section = ({ title, movies }) => {
     return (
         <Container>
+            <h4>{title}</h4>
             <Content>
-                <HoverEffect>
+                {
+                    movies && movies.map((movie, key) => (
 
-                    <Wrap>
-                        <Link to="/">
-                            <img src="/images/slider-badag.jpg" alt="" />
-                        </Link>
-                    </Wrap>
-                </HoverEffect>
-                <Wrap>
-                    <Link to="/">
-                        <img src="/images/slider-badag.jpg" alt="" />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link to="/">
-                        <img src="/images/slider-badag.jpg" alt="" />
-                    </Link>
-                </Wrap>
-                <Wrap>
-                    <Link to="/">
-                        <img src="/images/slider-badag.jpg" alt="" />
-                    </Link>
-                </Wrap>
+                        <Wrap key={key}>
+                            {movie.id}
+                            <Link to={'/detail/' + movie.id}>
+                                <img src={movie.cardImg} alt={movie.title} />
+                            </Link>
+                        </Wrap>
+                    ))
+                }
+
             </Content>
         </Container>
     );
@@ -81,4 +70,5 @@ const Wrap = styled.div`
         border-color: rgba(249,249,249, 0.8);
     }
 `;
-export default Recommends;
+
+export default Section;
