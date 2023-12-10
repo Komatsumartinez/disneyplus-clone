@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import ImgSlider from "./ImgSlider";
 import Viewers from "./Viewers";
-import NewDisney from "./Section";
 import Sections from "./Sections";
 import db from "../firebase";
 import { selectUserName } from "../features/user/userSlice";
@@ -10,16 +9,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const movieCollection = 'movies';
-let recommends = [];
-let newDisneys = [];
-let originals = [];
-let trendings = [];
 
 const Home = () => {
     const dispatch = useDispatch();
     const userName = useSelector(selectUserName);
 
     useEffect(() => {
+
+        let recommends = [];
+        let newDisneys = [];
+        let originals = [];
+        let trendings = [];
+
         db.collection(movieCollection).onSnapshot((snapshot) => {
             snapshot.docs.map((doc) => {
                 switch (doc.data().type) {

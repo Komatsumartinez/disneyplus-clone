@@ -8,7 +8,6 @@ const Section = ({ title, movies }) => {
             <Content>
                 {
                     movies && movies.map((movie, key) => (
-
                         <Wrap key={key}>
                             {movie.id}
                             <Link to={'/detail/' + movie.id}>
